@@ -19,6 +19,7 @@ class SearchBooks extends Component {
     if (query) {
     	BooksAPI.search(query, 20).then((books) => {
         // responses with no books has a error property
+
 				if (!books.error) {
 					this.setState({ books })
 				}
@@ -27,9 +28,8 @@ class SearchBooks extends Component {
   }
 
   updateShelf = () => {
-    BooksAPI.getAll().then( books => {
-      this.setState({books})
-    })
+    if (this.props.onChangeShelf)
+          this.props.onChangeShelf()
   }
 
   render() {
